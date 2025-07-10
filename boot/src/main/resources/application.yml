@@ -6,9 +6,9 @@ spring:
     # 推荐应用名也与 artifactId 保持一致
     name: boot-app
   datasource:
-    url: jdbc:mysql://localhost:3306/your_database?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://192.168.0.251:3306/ai-auto?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
     username: root
-    password: your_password
+    password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
 
 mybatis-plus:
