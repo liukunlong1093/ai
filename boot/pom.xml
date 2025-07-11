@@ -14,6 +14,11 @@
 
     <artifactId>boot</artifactId>
 
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+    </properties>
+
     <dependencies>
         <!-- Web 功能 -->
         <dependency>
@@ -39,6 +44,13 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <scope>provided</scope>
+        </dependency>
+
+        <!-- Basic Service -->
+        <dependency>
+            <groupId>org.ai</groupId>
+            <artifactId>basic-service</artifactId>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
 

@@ -18,6 +18,11 @@
     <name>basic-service</name>
     <description>Service layer interfaces (API) for the AI project.</description>
 
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+    </properties>
+
     <!-- 3. 依赖声明 -->
     <dependencies>
         <!--
@@ -30,6 +35,24 @@
             <version>${project.version}</version> <!-- 引用同项目内的模块，版本号使用 ${project.version} -->
         </dependency>
 
+        <!-- Spring Web for creating REST controllers -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!-- SpringDoc OpenAPI for API documentation -->
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+        </dependency>
+
+        <!-- Lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+        </dependency>
 
     </dependencies>
 
