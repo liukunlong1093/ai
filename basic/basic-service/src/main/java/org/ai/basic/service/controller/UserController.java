@@ -3,8 +3,9 @@ package org.ai.basic.service.controller;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.ai.basic.service.UserService;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.ai.core.base.http.Response;
+import org.ai.basic.common.domain.dto.req.UserCreateReqDTO;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author: lk
@@ -18,4 +19,14 @@ public class UserController {
 
     private final UserService userService;
 
+
+    @GetMapping("/test")
+    public Response<String> test() {
+        return Response.success("Hello, World!");
+    }
+
+    @PostMapping
+    public Response<Long> createUser(@RequestBody UserCreateReqDTO userCreateReqDTO) {
+        return Response.success(userService.createUser(userCreateReqDTO));
+    }
 }

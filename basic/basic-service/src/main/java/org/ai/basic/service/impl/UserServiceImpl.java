@@ -1,5 +1,6 @@
 package org.ai.basic.service.impl;
 
+import org.ai.basic.common.domain.dto.req.UserCreateReqDTO;
 import org.ai.basic.common.domain.entity.User;
 import org.ai.basic.service.UserService;
 import org.ai.basic.service.mapper.UserMapper;
@@ -19,8 +20,15 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
 
     @Override
-    public void createUser(User user) {
+    public Long createUser(UserCreateReqDTO userCreateReqDTO) {
+        User user = new User();
+        user.setUsername(userCreateReqDTO.getUsername());
+        user.setPassword(userCreateReqDTO.getPassword());
+        user.setEmail(userCreateReqDTO.getEmail());
+        user.setPhone(userCreateReqDTO.getPhone());
+        user.setNickname(userCreateReqDTO.getNickname());
         userMapper.insert(user);
+        return user.getId();
     }
 
     @Override

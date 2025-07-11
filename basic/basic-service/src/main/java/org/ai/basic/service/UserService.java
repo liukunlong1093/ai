@@ -1,5 +1,6 @@
 package org.ai.basic.service;
 
+import org.ai.basic.common.domain.dto.req.UserCreateReqDTO;
 import org.ai.basic.common.domain.entity.User;
 
 import java.util.List;
@@ -10,8 +11,8 @@ import java.util.List;
  */
 public interface UserService {
 
-    void createUser(User user);
-    
+    Long createUser(UserCreateReqDTO userCreateReqDTO);
+
     User getUserById(Long id);
 
     void updateUser(User user);
