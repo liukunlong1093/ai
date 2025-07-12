@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 8081
 
 spring:
   application:
@@ -14,8 +14,7 @@ spring:
 mybatis-plus:
   mapper-locations: classpath:/mapper/**/*.xml
   # ========= 关键变更点: 更新实体类的包路径 =========
-  # 假设你的Entity包是 org.ai.common.entity
-  type-aliases-package: org.ai.common.entity
+  type-aliases-package: org.ai.basic.service.model.base
   configuration:
     map-underscore-to-camel-case: true
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
@@ -24,3 +23,11 @@ mybatis-plus:
       logic-delete-field: deleted
       logic-delete-value: 1
       logic-not-delete-value: 0
+logging:
+  config: classpath:logback-spring.xml
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+  api-docs:
+    path: /v3/api-docs

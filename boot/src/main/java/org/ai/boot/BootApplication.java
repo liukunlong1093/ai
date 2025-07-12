@@ -1,17 +1,21 @@
 package org.ai.boot;
 
-import org.ai.basic.common.domain.entity.User;
-import org.ai.basic.service.UserService;
+import org.ai.basic.common.domain.dto.req.UserCreateReqDTO;
+import org.ai.basic.service.model.base.BaseUser;
+import org.ai.basic.service.BaseUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.mybatis.spring.annotation.MapperScan;
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.info.Info;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.context.annotation.ComponentScan;
 
+@OpenAPIDefinition(info = @Info(title = "AI Project API", version = "1.0", description = "API documentation for the AI project"))
 /**
  * Spring Boot 启动类
  * SpringBootApplication 注解包含了三个核心注解：
@@ -28,7 +32,7 @@ public class BootApplication implements CommandLineRunner {
     private static final Logger log = LoggerFactory.getLogger(BootApplication.class);
 
     @Autowired
-    private UserService userService;
+    private BaseUserService userService;
 
     public static void main(String[] args) {
         SpringApplication.run(BootApplication.class, args);
@@ -41,38 +45,37 @@ public class BootApplication implements CommandLineRunner {
 
         // 1. 创建用户
         log.info("1. 创建用户");
-        User newUser = new User();
-        newUser.setUsername("testuser");
-        newUser.setPassword("password");
-        newUser.setNickname("Test User");
-        newUser.setDeleted(false);
-        userService.createUser(newUser);
-        log.info("创建用户成功: {}", newUser);
+        UserCreateReqDTO userCreateReqDTO = new UserCreateReqDTO();
+        userCreateReqDTO.setUsername("testuser");
+        userCreateReqDTO.setPassword("password");
+        userCreateReqDTO.setNickname("Test BaseUser");
+        Long newBaseUserId = userService.createUser(userCreateReqDTO);
+        log.info("创建用户成功: id={}", newBaseUserId);
 
         // 2. 查询用户
         log.info("2. 查询用户");
-        User foundUser = userService.getUserById(newUser.getId());
-        log.info("查询到用户: {}", foundUser);
+        BaseUser foundBaseUser = userService.getBaseUserById(newBaseUserId);
+        log.info("查询到用户: {}", foundBaseUser);
 
         // 3. 更新用户
         log.info("3. 更新用户");
-        foundUser.setNickname("Updated Test User");
-        userService.updateUser(foundUser);
-        log.info("更新用户成功: {}", foundUser);
+        foundBaseUser.setNickname("Updated Test BaseUser");
+        userService.updateBaseUser(foundBaseUser);
+        log.info("更新用户成功: {}", foundBaseUser);
 
         // 4. 查询所有用户
         log.info("4. 查询所有用户");
-        log.info("所有用户: {}", userService.getAllUsers());
+        log.info("所有用户: {}", userService.getAllBaseUsers());
 
         // 5. 删除用户
         log.info("5. 删除用户");
-        userService.deleteUser(foundUser.getId());
+        userService.deleteBaseUser(foundBaseUser.getId());
         log.info("删除用户成功");
 
         // 6. 验证删除
         log.info("6. 验证删除");
-        User deletedUser = userService.getUserById(foundUser.getId());
-        if (deletedUser == null) {
+        BaseUser deletedBaseUser = userService.getBaseUserById(foundBaseUser.getId());
+        if (deletedBaseUser == null) {
             log.info("用户已成功删除");
         } else {
             log.error("用户删除失败");

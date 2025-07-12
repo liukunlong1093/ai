@@ -52,6 +52,12 @@
             <artifactId>basic-service</artifactId>
             <version>${project.version}</version>
         </dependency>
+
+        <!-- SpringDoc OpenAPI for API documentation -->
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
@@ -60,6 +66,16 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <mainClass>org.ai.boot.BootApplication</mainClass>
+                </configuration>
             </plugin>
         </plugins>
     </build>

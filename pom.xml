@@ -17,6 +17,7 @@
     <modules>
         <module>basic</module>
         <module>boot</module>
+        <module>base</module>
     </modules>
 
     <!-- 3. 统一属性管理 -->
@@ -27,6 +28,7 @@
         <mybatis-plus.version>3.5.3.1</mybatis-plus.version>
         <lombok.version>1.18.30</lombok.version>
         <mysql.version>8.0.33</mysql.version>
+        <commons-lang3.version>3.6</commons-lang3.version>
     </properties>
 
     <!-- 4. 统一依赖版本管理 (BOM) -->
@@ -80,11 +82,26 @@
                 <version>${mysql.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons-lang3.version}</version>
+            </dependency>
+
+
             <!-- SpringDoc OpenAPI for API documentation -->
             <dependency>
                 <groupId>org.springdoc</groupId>
                 <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
                 <version>2.2.0</version>
+            </dependency>
+
+            <!-- Spring Boot Test -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-test</artifactId>
+                <version>${spring-boot.version}</version>
+                <scope>test</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
