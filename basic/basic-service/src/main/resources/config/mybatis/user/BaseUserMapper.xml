@@ -3,7 +3,7 @@
 <mapper namespace="org.ai.basic.mapper.BaseUserMapper">
 
     <select id="customQuery" resultType="org.ai.basic.model.base.BaseUser" parameterType="org.ai.basic.dto.user.req.UserQueryReqDTO">
-        SELECT id, username, nickname, email, create_time, update_time FROM user
+        SELECT id, username, nickname, email, create_time, update_time FROM t_user
         <where>
             <if test="query != null and query != ''">
                 (username LIKE CONCAT('%', #{query}, '%') OR nickname LIKE CONCAT('%', #{query}, '%'))
