@@ -1,4 +1,4 @@
-package org.ai.basic.common.domain.dto.res;
+package org.ai.basic.dto.user.res;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;

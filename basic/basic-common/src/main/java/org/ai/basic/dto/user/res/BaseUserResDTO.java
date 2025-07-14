@@ -1,4 +1,4 @@
-package org.ai.basic.common.domain.dto.res;
+package org.ai.basic.dto.user.res;
 
 import lombok.Data;
 

@@ -1,8 +1,8 @@
 package org.ai.boot;
 
-import org.ai.basic.common.domain.dto.req.UserCreateReqDTO;
-import org.ai.basic.service.model.base.BaseUser;
-import org.ai.basic.service.BaseUserService;
+import org.ai.basic.dto.user.req.UserCreateReqDTO;
+import org.ai.basic.model.base.BaseUser;
+import org.ai.basic.service.user.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,13 +26,13 @@ import org.springframework.context.annotation.ComponentScan;
 @ServletComponentScan(basePackages = {"org.ai"})
 @SpringBootApplication
 @ComponentScan(basePackages = {"org.ai"})
-@MapperScan("org.ai.basic.service.mapper")
+@MapperScan("org.ai.basic.mapper")
 public class BootApplication implements CommandLineRunner {
 
     private static final Logger log = LoggerFactory.getLogger(BootApplication.class);
 
     @Autowired
-    private BaseUserService userService;
+    private UserService userService;
 
     public static void main(String[] args) {
         SpringApplication.run(BootApplication.class, args);

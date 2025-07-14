@@ -1,9 +1,10 @@
-package org.ai.basic.service;
+package org.ai.basic.service.user;
 
-import org.ai.basic.common.domain.dto.req.UserCreateReqDTO;
-import org.ai.basic.common.domain.dto.req.UserPageReqDTO;
-import org.ai.basic.common.domain.dto.res.PageResDTO;
-import org.ai.basic.service.model.base.BaseUser;
+import org.ai.basic.dto.user.req.UserCreateReqDTO;
+import org.ai.basic.dto.user.req.UserPageReqDTO;
+import org.ai.basic.dto.user.req.UserQueryReqDTO;
+import org.ai.basic.dto.user.res.PageResDTO;
+import org.ai.basic.model.base.BaseUser;
 
 import java.util.List;
 
@@ -13,7 +14,7 @@ import java.util.List;
  * @author: lk
  * @date: 2024/7/10 19:20
  */
-public interface BaseUserService {
+public interface UserService {
 
     /**
      * 创建新用户
@@ -63,9 +64,8 @@ public interface BaseUserService {
     /**
      * 自定义查询
      *
-     * @param query 查询条件
-     * @param sort  排序条件
+     * @param queryReqDTO 自定义查询DTO
      * @return 用户列表
      */
-    List<BaseUser> customQuery(String query, String sort);
+    List<BaseUser> customQuery(UserQueryReqDTO queryReqDTO);
 }

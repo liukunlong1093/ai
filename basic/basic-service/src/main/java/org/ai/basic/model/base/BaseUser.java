@@ -1,4 +1,4 @@
-package org.ai.basic.service.model.base;
+package org.ai.basic.model.base;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;

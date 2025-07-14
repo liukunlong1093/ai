@@ -1,19 +1,23 @@
-package org.ai.basic.service.impl;
+package org.ai.basic.service.user.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import org.ai.basic.common.domain.dto.req.UserCreateReqDTO;
-import org.ai.basic.common.domain.dto.req.UserPageReqDTO;
-import org.ai.basic.common.domain.dto.res.PageResDTO;
-import org.ai.basic.service.BaseUserService;
-import org.ai.basic.service.mapper.BaseUserMapper;
-import org.ai.basic.service.model.base.BaseUser;
+import org.ai.basic.dto.user.req.UserCreateReqDTO;
+import org.ai.basic.dto.user.req.UserPageReqDTO;
+import org.ai.basic.dto.user.req.UserQueryReqDTO;
+import org.ai.basic.dto.user.res.PageResDTO;
+import org.ai.basic.mapper.BaseUserMapper;
+import org.ai.basic.model.base.BaseUser;
+import org.ai.basic.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * 用户基础服务实现
@@ -23,7 +27,12 @@ import java.util.List;
  */
 @Service
 @Transactional(rollbackFor = Exception.class)
-public class BaseUserServiceImpl implements BaseUserService {
+public class UserServiceImpl implements UserService {
+
+    private static final Set<String> ALLOWED_SORT_FIELDS = new HashSet<>(Arrays.asList(
+            "id", "username", "nickname", "email", "phone", "status",
+            "creator", "updater", "createTime", "updateTime"
+    ));
 
     @Autowired
     private BaseUserMapper userMapper;
@@ -109,22 +118,14 @@ public class BaseUserServiceImpl implements BaseUserService {
     /**
      * 自定义查询
      *
-     * @param query 查询条件
-     * @param sort  排序条件
+     * @param queryReqDTO 自定义查询DTO
      * @return 用户列表
      */
     @Override
-    public List<BaseUser> customQuery(String query, String sort) {
-        // 在实际应用中，您需要解析查询和排序参数以构建动态SQL查询。
-        // 为简单起见，我们将使用一个基本的实现。
-        QueryWrapper<BaseUser> queryWrapper = new QueryWrapper<>();
-        if (StringUtils.hasText(query)) {
-            // 这是一个简化的示例。实际实现需要一个更健壮的解决方案来解析查询字符串和构建查询。
-            queryWrapper.like("username", query);
+    public List<BaseUser> customQuery(UserQueryReqDTO queryReqDTO) {
+        if (StringUtils.hasText(queryReqDTO.getSort()) && !ALLOWED_SORT_FIELDS.contains(queryReqDTO.getSort())) {
+            throw new IllegalArgumentException("Invalid sort field: " + queryReqDTO.getSort());
         }
-        if (StringUtils.hasText(sort)) {
-            queryWrapper.orderBy(true, true, sort);
-        }
-        return userMapper.selectList(queryWrapper);
+        return userMapper.customQuery(queryReqDTO);
     }
 }

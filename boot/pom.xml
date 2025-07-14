@@ -15,8 +15,8 @@
     <artifactId>boot</artifactId>
 
     <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
     </properties>
 
     <dependencies>
@@ -46,17 +46,24 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- Basic Service -->
+        <!-- Basic Modules -->
+        <dependency>
+            <groupId>org.ai</groupId>
+            <artifactId>basic-common</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.ai</groupId>
             <artifactId>basic-service</artifactId>
-            <version>${project.version}</version>
         </dependency>
 
-        <!-- SpringDoc OpenAPI for API documentation -->
+        <!-- API Documentation -->
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.github.xiaoymin</groupId>
+            <artifactId>knife4j-openapi3-jakarta-spring-boot-starter</artifactId>
         </dependency>
     </dependencies>
 

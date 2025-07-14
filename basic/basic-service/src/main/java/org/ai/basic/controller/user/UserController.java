@@ -1,15 +1,15 @@
-package org.ai.basic.service.controller;
+package org.ai.basic.controller.user;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
-import org.ai.basic.common.domain.dto.req.UserPageReqDTO;
-import org.ai.basic.common.domain.dto.req.UserQueryReqDTO;
-import org.ai.basic.common.domain.dto.res.PageResDTO;
-import org.ai.basic.service.BaseUserService;
-import org.ai.basic.service.model.base.BaseUser;
+import org.ai.basic.dto.user.req.UserPageReqDTO;
+import org.ai.basic.dto.user.req.UserQueryReqDTO;
+import org.ai.basic.dto.user.res.PageResDTO;
+import org.ai.basic.model.base.BaseUser;
+import org.ai.basic.service.user.UserService;
 import org.ai.core.base.http.Response;
-import org.ai.basic.common.domain.dto.req.UserCreateReqDTO;
+import org.ai.basic.dto.user.req.UserCreateReqDTO;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,9 +24,9 @@ import java.util.List;
 @Tag(name = "BaseUser API")
 @RequestMapping("/user")
 @RequiredArgsConstructor
-public class BaseUserController {
+public class UserController {
 
-    private final BaseUserService userService;
+    private final UserService userService;
 
     /**
      * 测试接口
@@ -68,9 +68,9 @@ public class BaseUserController {
      * @param queryReqDTO 自定义查询请求DTO
      * @return 用户列表
      */
-    @PostMapping("/query")
+    @GetMapping("/query")
     @Operation(summary = "自定义查询用户")
-    public Response<List<BaseUser>> customQuery(@RequestBody UserQueryReqDTO queryReqDTO) {
-        return Response.success(userService.customQuery(queryReqDTO.getQuery(), queryReqDTO.getSort()));
+    public Response<List<BaseUser>> customQuery(UserQueryReqDTO queryReqDTO) {
+        return Response.success(userService.customQuery(queryReqDTO));
     }
 }
