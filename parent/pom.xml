@@ -16,7 +16,7 @@
     <!-- 2. 聚合所有子模块 -->
     <modules>
         <module>../base</module>
-        <module>../company/basic</module>
+        <module>../basic</module>
         <module>../boss</module>
         <module>../gateway</module>
         <module>../api</module>
