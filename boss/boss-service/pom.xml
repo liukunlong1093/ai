@@ -5,49 +5,55 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.ai</groupId>
-        <artifactId>basic</artifactId>
+        <artifactId>boss</artifactId>
         <version>1.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>basic-service</artifactId>
+    <artifactId>boss-service</artifactId>
     <packaging>jar</packaging>
 
-    <name>basic-service</name>
-    <description>Service layer interfaces (API) for the AI project.</description>
-
-    <properties>
-        <maven.compiler.source>21</maven.compiler.source>
-        <maven.compiler.target>21</maven.compiler.target>
-    </properties>
+    <name>boss-service</name>
+    <description>The Boss microservice</description>
 
     <dependencies>
+        <!-- Dependency on boss-common -->
         <dependency>
             <groupId>org.ai</groupId>
-            <artifactId>basic-common</artifactId>
+            <artifactId>boss-common</artifactId>
             <version>${project.version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.ai</groupId>
-            <artifactId>base</artifactId>
-        </dependency>
+
+        <!-- Spring Boot Starter Web -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+
+        <!-- Nacos Discovery Client -->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
         </dependency>
+
+        <!-- Lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <scope>provided</scope>
         </dependency>
+
+        <!-- Feign Client for calling other services -->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+
+        <!-- Dependency on basic-common to get the UserClient -->
+        <dependency>
+            <groupId>org.ai</groupId>
+            <artifactId>basic-common</artifactId>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
 
@@ -59,4 +65,5 @@
             </plugin>
         </plugins>
     </build>
+
 </project>

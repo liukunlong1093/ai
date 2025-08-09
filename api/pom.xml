@@ -3,8 +3,6 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
-    <!-- 继承自根父项目 -->
     <parent>
         <groupId>org.ai</groupId>
         <artifactId>ai-parent</artifactId>
@@ -12,11 +10,17 @@
         <relativePath>../parent/pom.xml</relativePath>
     </parent>
 
-    <artifactId>basic</artifactId>
-    <packaging>pom</packaging>
+    <artifactId>api</artifactId>
+    <packaging>jar</packaging>
 
-    <modules>
-        <module>basic-common</module>
-        <module>basic-service</module>
-    </modules>
+    <name>api</name>
+    <description>API module containing all Feign client interfaces</description>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+    </dependencies>
+
 </project>
