@@ -10,17 +10,8 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <name>ai</name>
-    <description>The Parent and Aggregator for the entire AI project</description>
-
-    <!-- 2. 聚合所有子模块 -->
-    <modules>
-        <module>../base</module>
-        <module>../basic</module>
-        <module>../boss</module>
-        <module>../gateway</module>
-        <module>../api</module>
-    </modules>
+    <name>ai-parent-pom</name>
+    <description>The Parent POM for the entire AI project</description>
 
     <!-- 3. 统一属性管理 -->
     <properties>
