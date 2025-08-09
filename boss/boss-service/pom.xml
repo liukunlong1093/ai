@@ -55,6 +55,12 @@
             <artifactId>basic-common</artifactId>
             <version>${project.version}</version>
         </dependency>
+
+        <!-- Knife4j for documentation generation -->
+        <dependency>
+            <groupId>com.github.xiaoymin</groupId>
+            <artifactId>knife4j-openapi3-jakarta-spring-boot-starter</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

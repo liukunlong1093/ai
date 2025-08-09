@@ -1,0 +1,23 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    name: api-docs
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+
+# Knife4j Gateway aggregation configuration
+knife4j:
+  gateway:
+    enabled: true
+    strategy: discover
+    discover:
+      enabled: true
+      version: openapi3
+      # Exclude the gateway and the doc aggregator itself
+      excluded-services:
+        - gateway-service
+        - api-docs
